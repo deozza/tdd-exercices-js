@@ -7,7 +7,7 @@ describe('AddOperationService test', () => {
 
         const addOperationService: AddOperationService = new AddOperationService(1, 2)
         const result = addOperationService.getValue()
-        expect(result).toBe(3) 
+        expect(result).toBe(3); 
     })
 
     it('getValue with negative operands', () => {
@@ -22,5 +22,9 @@ describe('AddOperationService test', () => {
         const addOperationService: AddOperationService = new AddOperationService(1, -2)
         const result = addOperationService.getValue()
         expect(result).toBe(-1) 
+    })
+    it('getValue with string and array', () => {
+        const addOperationService: AddOperationService = new AddOperationService('not a number', []);
+        expect(() => addOperationService.getValue()).toThrowError(/^Operands must be numeric$/);
     })
 })

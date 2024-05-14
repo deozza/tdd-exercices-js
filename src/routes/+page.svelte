@@ -1,8 +1,8 @@
 <script lang="ts">
 	import CalculatorService from "$lib/services/calculator/CalculatorService";
 
-    let a:number = 0;
-    let b:number = 0;
+    let a:number|null = null;
+    let b:number|null = null;
     let operator:string = '';
     let result: number|null = null;
     let errors: string[] = [];
@@ -34,7 +34,11 @@
             return;
         }
 
-        result = calculatorService.calculate(operator, a, b);
+        try{
+            result = calculatorService.calculate(operator, a, b);
+        }catch(e){
+            errors = [...errors, e.message];
+        }
     }
 
 </script>
